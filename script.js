@@ -1,14 +1,10 @@
-{`const koi = document.getElementById("koi");
+{`const fish=document.getElementById("fish");
 
-document.addEventListener("mousemove", (e) => {
+document.addEventListener("mousemove",(e)=>{
 
-  const x = (e.clientX / window.innerWidth - 0.5) * 12;
-  const y = (e.clientY / window.innerHeight - 0.5) * 12;
+const x=(e.clientX/window.innerWidth-.5)*20;
+const y=(e.clientY/window.innerHeight-.5)*12;
 
-  koi.style.transform = \`
-    translate(-50%, -50%)
-    rotate(${-8 + x * 0.15}deg)
-    translate(${x}px, ${y}px)
-  \`;
+fish.style.filter=\`drop-shadow(${x/4}px ${20+y/4}px 40px rgba(0,0,0,.45))\`;
 
 });`}
