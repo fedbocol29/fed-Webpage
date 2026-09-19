@@ -1,54 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Koi Luxury</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koi Luxury</title>
 
-  <link rel="stylesheet" href="style.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html,body{
+height:100%;
+overflow:hidden;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:
+radial-gradient(circle at 50% 30%,
+#b60000 0%,
+#7a0000 45%,
+#350000 100%);
+}
+
+.hero{
+position:relative;
+width:100vw;
+height:100vh;
+overflow:hidden;
+}
+
+.glow{
+position:absolute;
+inset:0;
+background:
+radial-gradient(circle at center,
+rgba(255,120,120,.25),
+transparent 55%);
+animation:glow 6s ease-in-out infinite;
+}
+
+svg{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+overflow:visible;
+}
+
+.content{
+position:absolute;
+left:7%;
+bottom:8%;
+color:white;
+z-index:50;
+}
+
+.content h1{
+font-size:clamp(3rem,8vw,7rem);
+line-height:.9;
+font-weight:900;
+letter-spacing:-3px;
+}
+
+.content p{
+margin-top:22px;
+max-width:420px;
+line-height:1.7;
+color:#ffe6e6;
+}
+
+button{
+margin-top:28px;
+padding:18px 34px;
+border:none;
+border-radius:40px;
+background:white;
+color:#8b0000;
+font-weight:bold;
+font-size:1rem;
+cursor:pointer;
+transition:.35s;
+}
+
+button:hover{
+transform:translateY(-4px);
+}
+
+.next{
+height:100vh;
+display:grid;
+place-items:center;
+background:#6d0000;
+color:white;
+font-size:3rem;
+}
+
+#fishGroup{
+transform-box:fill-box;
+transform-origin:center;
+filter:drop-shadow(0 35px 35px rgba(0,0,0,.45));
+}
+
+.head{transform-origin:86% 50%;}
+.body{transform-origin:58% 50%;}
+.tail{transform-origin:38% 50%;}
+.finLeft{transform-origin:61% 35%;}
+.finRight{transform-origin:61% 65%;}
+
+@keyframes glow{
+0%,100%{opacity:.55;}
+50%{opacity:1;}
+}
+</style>
 </head>
 
 <body>
 
 <section class="hero">
 
-  <div class="red-glow"></div>
+<div class="glow"></div>
 
- <div class="fish" id="fish">
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
 
-  <div class="fish-head"></div>
+<defs>
 
-  <div class="fish-body"></div>
+<filter id="water">
+<feTurbulence id="noise"
+type="fractalNoise"
+baseFrequency=".008"
+numOctaves="2"
+seed="8"/>
+<feDisplacementMap id="disp"
+in="SourceGraphic"
+scale="0"/>
+</filter>
 
-  <div class="fish-tail"></div>
+<clipPath id="headClip">
+<polygon points="620,70 1120,40 1120,760 620,730"/>
+</clipPath>
 
-  <div class="fish-fin fin-left"></div>
+<clipPath id="bodyClip">
+<polygon points="360,70 700,70 700,730 360,730"/>
+</clipPath>
 
-  <div class="fish-fin fin-right"></div>
+<clipPath id="tailClip">
+<polygon points="20,70 420,70 420,730 20,730"/>
+</clipPath>
+
+<clipPath id="finLClip">
+<polygon points="500,220 690,150 620,340"/>
+</clipPath>
+
+<clipPath id="finRClip">
+<polygon points="500,580 690,650 620,460"/>
+</clipPath>
+
+</defs>
+
+<g id="fishGroup">
+
+<g id="swim">
+
+<g id="tail" class="tail">
+<image href="assets/koi.jpg"
+x="80"
+y="40"
+width="1040"
+height="720"
+clip-path="url(#tailClip)"
+filter="url(#water)"/>
+</g>
+
+<g id="body" class="body">
+<image href="assets/koi.jpg"
+x="80"
+y="40"
+width="1040"
+height="720"
+clip-path="url(#bodyClip)"
+filter="url(#water)"/>
+</g>
+
+<g id="head" class="head">
+<image href="assets/koi.jpg"
+x="80"
+y="40"
+width="1040"
+height="720"
+clip-path="url(#headClip)"
+filter="url(#water)"/>
+</g>
+
+<g id="finLeft" class="finLeft">
+<image href="assets/koi.jpg"
+x="80"
+y="40"
+width="1040"
+height="720"
+clip-path="url(#finLClip)"
+filter="url(#water)"/>
+</g>
+
+<g id="finRight" class="finRight">
+<image href="assets/koi.jpg"
+x="80"
+y="40"
+width="1040"
+height="720"
+clip-path="url(#finRClip)"
+filter="url(#water)"/>
+</g>
+
+</g>
+
+</g>
+
+</svg>
+
+<div class="content">
+
+<h1>CREATE<br>EVERY DAY</h1>
+
+<p>
+Luxury products inspired by timeless Japanese craftsmanship.
+</p>
+
+<button>Shop Now</button>
 
 </div>
-
-  <div class="content">
-
-    <h1>CREATE<br>EVERY DAY</h1>
-
-    <p>
-      Luxury products inspired by timeless Japanese craftsmanship.
-    </p>
-
-    <button>Shop Now</button>
-
-  </div>
 
 </section>
 
 <section class="next">
-
-  <h2>Featured Collection</h2>
-
+<h2>Featured Collection</h2>
 </section>
 
-<script src="script.js"></script>
+<script>
+
+const swim=document.getElementById("swim");
+const body=document.getElementById("body");
+const head=document.getElementById("head");
+const tail=document.getElementById("tail");
+const finLeft=document.getElementById("finLeft");
+const finRight=document.getElementById("finRight");
+const disp=document.getElementById("disp");
+const noise=document.getElementById("noise");
+
+let mx=0,my=0;
+let cx=0,cy=0;
+
+document.addEventListener("mousemove",(e)=>{
+mx=(e.clientX/window.innerWidth-.5)*30;
+my=(e.clientY/window.innerHeight-.5)*20;
+});
+
+function animate(time){
+
+const t=time*.001;
+
+cx+=(mx-cx)*.05;
+cy+=(my-cy)*.05;
+
+const pathX=Math.sin(t*.42)*120+Math.sin(t*.18)*25;
+const pathY=Math.sin(t*.84)*55;
+
+const rot=-8+Math.sin(t*.42)*6+cx*.08;
+
+swim.setAttribute(
+"transform",
+`translate(${pathX+cx},${pathY+cy}) rotate(${rot},600,400)`
+);
+
+tail.setAttribute(
+"transform",
+`rotate(${Math.sin(t*8)*18},420,400)`
+);
+
+body.setAttribute(
+"transform",
+`rotate(${Math.sin(t*4)*3},560,400)`
+);
+
+head.setAttribute(
+"transform",
+`rotate(${Math.sin(t*4+.8)*1.2},860,400)`
+);
+
+finLeft.setAttribute(
+"transform",
+`rotate(${Math.sin(t*10)*24},620,250)`
+);
+
+finRight.setAttribute(
+"transform",
+`rotate(${-Math.sin(t*10)*24},620,550)`
+);
+
+disp.setAttribute("scale",6+Math.sin(t*2)*3);
+
+noise.setAttribute("baseFrequency",
+(0.008+Math.sin(t*.5)*0.001).toFixed(4));
+
+requestAnimationFrame(animate);
+
+}
+
+requestAnimationFrame(animate);
+
+</script>
 
 </body>
 </html>
